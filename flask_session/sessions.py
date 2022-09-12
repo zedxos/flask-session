@@ -453,7 +453,7 @@ class MongoDBSessionInterface(SessionInterface):
             conditional_cookie_kwargs["samesite"] = self.get_cookie_samesite(app)
         expires = self.get_expiration_time(app, session)
         val = self.serializer.dumps(dict(session))
-        self.store.update({'id': store_id},
+        self.store.update_one({'id': store_id},
                           {'id': store_id,
                            'val': val,
                            'expiration': expires}, True)
